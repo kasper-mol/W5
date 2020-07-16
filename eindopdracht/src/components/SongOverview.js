@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SongForm from './SongForm.js'
 import Database from './Database.js'
 
@@ -27,25 +27,27 @@ function SongOverview() {
         <div>
             <h3>Input songs</h3>
             <SongForm clickFunction={onSubmit} />
+            <h3>opgeslagen songs</h3>
             <table>
-
-                <tr className="song-header">
-                    <th className="song-row__item">Song row placeholder</th>
-                    <th className="song-row__item">Artist row placeholder</th>
-                    <th className="song-row__item">Genre row placeholder</th>
-                    <th className="song-row__item">Rating row placeholder</th>
-                </tr>
-                <h3>opgeslagen songs</h3>
-                {songList.map(item => {
-                    return (
-                        <tr>
-                            <td>{item.title}</td>
-                            <td>{item.artist}</td>
-                            <td>{item.genre}</td>
-                            <td>{item.rating}</td></tr>)
-                })
-                }
-
+                <thead>
+                    <tr className="song-header">
+                        <th className="song-row__item">Song row placeholder</th>
+                        <th className="song-row__item">Artist row placeholder</th>
+                        <th className="song-row__item">Genre row placeholder</th>
+                        <th className="song-row__item">Rating row placeholder</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {songList.map(item => {
+                        return (
+                            <tr key={item.title}>
+                                <td>{item.title}</td>
+                                <td>{item.artist}</td>
+                                <td>{item.genre}</td>
+                                <td>{item.rating}</td></tr>)
+                    })
+                    }
+                </tbody>
 
             </table>
 
