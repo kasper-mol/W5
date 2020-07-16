@@ -13,17 +13,13 @@ function SongOverview() {
     //settsongdata
     const [songList, setSongs] = useState(songs)
 
-    function addSong(newSong) {
+    function addSongToList(newSong) {
         setSongs([...songList, newSong]);
     }
 
-
-
-
-
     const onSubmit = (data) => {
-        const newSong = data
-        addSong(newSong)
+        const newSongData = data
+        addSongToList(newSongData)
         Database(data)
     }
 
@@ -32,13 +28,14 @@ function SongOverview() {
             <h3>Input songs</h3>
             <SongForm clickFunction={onSubmit} />
             <table>
+
                 <tr className="song-header">
                     <th className="song-row__item">Song row placeholder</th>
                     <th className="song-row__item">Artist row placeholder</th>
                     <th className="song-row__item">Genre row placeholder</th>
                     <th className="song-row__item">Rating row placeholder</th>
                 </tr>
-
+                <h3>opgeslagen songs</h3>
                 {songList.map(item => {
                     return (
                         <tr>

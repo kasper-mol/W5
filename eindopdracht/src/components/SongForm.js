@@ -11,7 +11,7 @@ function SongForm(props) {
 
     return (
         <form onSubmit={handleSubmit(props.clickFunction)}>
-            <label for="name">Name</label>
+            <label >Add a song</label><br />
             <input type="text" name="title" id="name" ref={register()} />
             <input type="text" name="artist" id="name" ref={register()} />
             <input type="text" name="genre" id="name" ref={register()} />
