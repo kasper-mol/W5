@@ -1,14 +1,9 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 
-
-
-
 function SongForm(props) {
 
     const { register, handleSubmit } = useForm();
-
-
     return (
         <form onSubmit={handleSubmit(props.clickFunction)}>
             <label >Add a song</label><br />
