@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import SongOverview from './components/SongOverview.js'
 
@@ -20,7 +19,7 @@ function App() {
           <Route path="/about" component={AboutMe} />
         </Switch>
       </div >
-    </Router>
+    </Router >
   );
 }
 

@@ -1,5 +1,5 @@
 const DeleteSongDatabase = async (songKey) => {
-    await fetch(`https://eindopdracht-w5.firebaseio.com/test/${songKey}.json`, {
+    await fetch(`https://eindopdracht-w5.firebaseio.com/database/${songKey}.json`, {
         method: "delete",
     });
 }
