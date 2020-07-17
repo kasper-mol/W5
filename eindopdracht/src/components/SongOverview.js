@@ -4,6 +4,7 @@ import AddToDatabase from './Database.js'
 import DeleteDatabase from './DeleteFromDatabase'
 
 
+
 function SongOverview() {
 
     //settsongdata
@@ -15,11 +16,9 @@ function SongOverview() {
         setSongs([...songList, newSong]);
     }
 
-
     //Click events
     const onSubmit = async (data) => {
         const getSongKey = await AddToDatabase(data)
-        console.log(getSongKey)
         const newSongData = {
             key: getSongKey,
             title: data.title,
@@ -27,7 +26,6 @@ function SongOverview() {
             genre: data.genre,
             rating: data.rating
         }
-        console.log(newSongData)
         addSongToList(newSongData)
     }
 
@@ -36,6 +34,20 @@ function SongOverview() {
         DeleteDatabase(clickedSong.key)
     }
 
+    // Render Song list
+    function renderSongs() {
+        {
+            songList.map(item => {
+                return (
+                    <tr key={item.title}>
+                        <td>{item.title}</td>
+                        <td>{item.artist}</td>
+                        <td>{item.genre}</td>
+                        <td>{item.rating}</td>
+                        <td><button onClick={() => { deleteSongFromList(item) }}>Delete Song</button></td></tr>)
+            })
+        }
+    }
 
     return (
         <div>
@@ -53,16 +65,7 @@ function SongOverview() {
                     </tr>
                 </thead>
                 <tbody>
-                    {songList.map(item => {
-                        return (
-                            <tr key={item.title}>
-                                <td>{item.title}</td>
-                                <td>{item.artist}</td>
-                                <td>{item.genre}</td>
-                                <td>{item.rating}</td>
-                                <td><button onClick={() => { deleteSongFromList(item) }}>Delete Song</button></td></tr>)
-                    })
-                    }
+                    <renderSongs />
                 </tbody>
 
             </table>
