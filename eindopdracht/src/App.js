@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
 
-      <h3>opgeslagen songs</h3>
+
       <SongOverview />
 
     </div>
