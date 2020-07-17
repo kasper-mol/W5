@@ -9,15 +9,12 @@ function Nav() {
         <div>
             <nav>
                 <ul className="navlinks">
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="./about">About</Link>
-                    </li>
-                    <li>
-                        <Link to="https://www.linkedin.com/in/kasper-mol/">LinkeIn</Link>
-                    </li>
+                    <Link to="/">
+                        <li>Home</li>
+                    </Link>
+                    <Link to="./about">
+                        <li>About</li>
+                    </Link>
                 </ul>
             </nav>
         </div>

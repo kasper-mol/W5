@@ -10,7 +10,7 @@ import {
 function About() {
     return (
         <div>
-            <h3>hoii dit ben ik</h3>
+            <h3>Ik ben kasper, momenteel zit ik in de 5e week van de Winc Academy opleiding tot Front-end Developer</h3>
         </div>
     );
 }
