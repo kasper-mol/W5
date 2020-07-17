@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Link
 } from "react-router-dom";
-import SongOverview from './components/SongOverview.js'
+
 
 function Nav() {
     return (

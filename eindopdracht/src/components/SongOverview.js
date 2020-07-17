@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SongForm from './SongForm.js'
-import AddToDatabase from './Database.js'
+import getAllTracks from './RenderSongsDatabase.js'
+import AddToDatabase from './DatabasePost.js'
 import DeleteDatabase from './DeleteFromDatabase'
 
-
-
 function SongOverview() {
+    // Render songs from database on load
+    useEffect(() => {
+        renderTracks();
+    }, [])
+
+    const renderTracks = async () => {
+        const databaseTracks = await getAllTracks()
+        let songs = Object.keys(databaseTracks).map((key) => ({
+            key: key,
+            title: databaseTracks[key].title,
+            artist: databaseTracks[key].artist,
+            genre: databaseTracks[key].genre,
+            rating: databaseTracks[key].rating
+        }))
+        setSongs(songs)
+    }
 
     //settsongdata
     const songs = [];
@@ -34,45 +49,39 @@ function SongOverview() {
         DeleteDatabase(clickedSong.key)
     }
 
-    // Render Song list
-    function renderSongs() {
-        {
-            songList.map(item => {
-                return (
-                    <tr key={item.title}>
-                        <td>{item.title}</td>
-                        <td>{item.artist}</td>
-                        <td>{item.genre}</td>
-                        <td>{item.rating}</td>
-                        <td><button onClick={() => { deleteSongFromList(item) }}>Delete Song</button></td></tr>)
-            })
-        }
-    }
-
     return (
-        <div>
-            <h3>Input songs</h3>
+        <div className='songwrap'>
+            <h3>Add a song to your favorites</h3>
             <SongForm clickFunction={onSubmit} />
             <h3>opgeslagen songs</h3>
             <table>
                 <thead>
                     <tr className="song-header">
-                        <th className="song-row__item">Song row placeholder</th>
-                        <th className="song-row__item">Artist row placeholder</th>
-                        <th className="song-row__item">Genre row placeholder</th>
-                        <th className="song-row__item">Rating row placeholder</th>
-                        <th className="song-row__item">delete placeholder</th>
+                        <th className="song-row__item">Title</th>
+                        <th className="song-row__item">Artist</th>
+                        <th className="song-row__item">Genre</th>
+                        <th className="song-row__item">Rating</th>
+                        <th className="song-row__item">Delete song</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <renderSongs />
+                    {
+                        songList.map(item => {
+                            return (
+                                <tr key={item.key}>
+                                    <td>{item.title}</td>
+                                    <td>{item.artist}</td>
+                                    <td>{item.genre}</td>
+                                    <td>{item.rating}</td>
+                                    <td><button onClick={() => { deleteSongFromList(item) }}>Delete</button></td></tr>)
+                        })
+                    }
                 </tbody>
 
             </table>
-
         </div>
     );
+
 }
 
-
-export default SongOverview;
+export default SongOverview
